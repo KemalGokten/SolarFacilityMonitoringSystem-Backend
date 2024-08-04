@@ -1,5 +1,6 @@
-import express from 'express';
-import readCSVFileController from './uploads/readCSVFile';
+import express from "express";
+
+import readCSVFileController from "./uploads/readCSVFile";
 
 const router = express.Router();
 
@@ -9,11 +10,13 @@ interface IRoutes {
 
 //TODO move this to a seperate file
 const routes: IRoutes = {
-  '/uploads/readCSVFile': readCSVFileController // base route
+  "/uploads/readCSVFile": readCSVFileController, // base route
 };
 
-Object.entries(routes).map(([path, controllerFunction]: [string, express.Router]) => {
-  router.use(path, controllerFunction);
-});
+Object.entries(routes).map(
+  ([path, controllerFunction]: [string, express.Router]) => {
+    router.use(path, controllerFunction);
+  }
+);
 
 export default router;

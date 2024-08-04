@@ -1,6 +1,8 @@
-import { User } from "../model/user";
-import jwt from "jsonwebtoken";
 import nodemailer from "nodemailer";
+
+import jwt from "jsonwebtoken";
+
+import { User } from "../model/user";
 
 const SECRET_KEY = process.env.SECRET_KEY as string;
 const EMAIL_USER = process.env.EMAIL_USER as string;

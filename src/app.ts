@@ -1,25 +1,32 @@
 import 'dotenv/config';
+
 import express from 'express';
 import mongoose from 'mongoose';
 import http from 'http';
 import cors from 'cors';
+
+import { connectDB } from './db/connects';
+
 import { ApolloServer } from '@apollo/server';
 import { expressMiddleware } from '@apollo/server/express4';
 import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
-import jwt from 'jsonwebtoken';
-import { connectDB } from './db/connects';
+
 import { mergedGQLSchema } from './schema';
 import { resolvers } from './resolvers';
+
+import jwt from 'jsonwebtoken';
+
 import controllers from './controllers';
 
 const MONGO_URI = process.env.MONGODB_URI as string;
+const ORIGIN = process.env.ORIGIN as string;
 const PORT = parseInt(process.env.PORT as string, 10);
 
 // Initialize Express app
 const app = express();
 
 // Setup CORS
-app.use(cors());
+app.use(cors({origin: [ORIGIN],}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
